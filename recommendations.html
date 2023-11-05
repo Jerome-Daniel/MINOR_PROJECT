@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            width:90%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 50px;
+            padding: 30px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        li ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li ul li {
+            margin-bottom: 5px;
+        }
+
+        li ul li:first-child {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Recommendations</h1>
+<ul>
+    {% for i, recommendation in recommendations %}
+    <li>
+        Recommendation {{ i + 1 }} (Similarity: {{ recommendation[] }})
+        <ul>
+            {% for resource_link in resource_links %}
+            {% if loop.index <= 1 %}
+            <li>Math Resource: {{ resource_link['math_resource_link'] }}</li>
+            <li>Science Resource: {{ resource_link['science_resource_link'] }}</li>
+            <li>English Resource: {{ resource_link['english_resource_link'] }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
